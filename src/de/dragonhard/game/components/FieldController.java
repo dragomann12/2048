@@ -13,8 +13,6 @@ public class FieldController {
    static final Color finalSelectedColor = Storage.loadColor("Field_Color_Selected_2");
    static final int maxSelectedFields = Storage.loadInteger("Field_Max_Selected");
    static int currentSelectedFields = 0;
-   static int oldSelectedFields = 0;
-   static boolean canSetOld = false;
    static ArrayList<JPanel> fields = new ArrayList<>();
    static HashMap<String, Integer> fieldStates = new HashMap<>();
 
@@ -53,16 +51,14 @@ public class FieldController {
                     case 1:
                         if(isLimitReached()){return;}
                         panel.setBackground(finalSelectedColor);
-                        updateState(field,2);
-                        selectField(panel.getName());
+                        updateState(panel,2);
                         panel.updateUI();
 
                         break;
                     case 2:
 
                         panel.setBackground(defaultColor);
-                        updateState(field,0);
-                        deselectField(panel.getName());
+                        updateState(panel,0);
                         panel.updateUI();
 
                         break;
@@ -79,6 +75,17 @@ public class FieldController {
         System.out.println("isLimitReached: " + isLimitReached());
 
     }
+
+    private static int validateSelectedFields(){
+        var amount = 0;
+        for(int i = 0; i<fields.size(); i ++){
+            if(fieldStates.get(fields.get(i).getName()) == 2){
+                amount +=1;
+            }
+        }
+        return amount;
+    }
+
     static boolean canOverride = false;
     public static void updateSelectionState(){
         if(!canOverride){return;}
@@ -106,7 +113,7 @@ public class FieldController {
 
     static ArrayList<String> selectedFields = new ArrayList<>();
     private static boolean isLimitReached(){
-        currentSelectedFields = selectedFields.size();
+        currentSelectedFields = validateSelectedFields();
         if(currentSelectedFields == maxSelectedFields){
             clearFields();
             canOverride = true;

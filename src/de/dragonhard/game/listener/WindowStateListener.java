@@ -1,7 +1,5 @@
 package de.dragonhard.game.listener;
 
-
-
 import de.dragonhard.game.components.WindowStateManager;
 
 import java.awt.event.ActionEvent;
