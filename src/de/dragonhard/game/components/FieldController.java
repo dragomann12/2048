@@ -122,14 +122,6 @@ public class FieldController {
         return false;
     }
 
-    private static void selectField(String name){
-        selectedFields.add(name);
-    }
-
-    private static void deselectField(String name){
-        selectedFields.remove(name);
-    }
-
     public static boolean isEffectEnabled(JPanel panel){
         if(panel.getBackground() == firstSelectedColor){
             return false;

@@ -12,7 +12,7 @@ public class Storage {
 
     public static void save(String key, String value) {
         if(key.isEmpty() || key.isBlank()){System.err.println("[Storage] [Error] no key for value"); return;}
-        if(value.isEmpty() || value.isBlank()){System.err.println("[Storage] [Error] no key for value" + key + "*"); return;}
+        if(value.isEmpty() || value.isBlank()){System.err.println("[Storage] [Error] no key for value " + key + "*"); return;}
         if(string_storage.containsKey(key)){
             deleteString(key);
             string_storage.put(key,value);
@@ -22,7 +22,7 @@ public class Storage {
 
     public static void save(String key, int value) {
         if(key.isEmpty() || key.isBlank()){System.err.println("[Storage] [Error] no key for value"); return;}
-        if(value == 0){System.err.println("[Storage] [Error] no key for value" + key + "*"); return;}
+        if(value == 0){System.err.println("[Storage] [Error] no key for value " + key + "*"); return;}
         if(integer_storage.containsKey(key)){
             deleteInteger(key);
             integer_storage.put(key,value);

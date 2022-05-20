@@ -47,6 +47,7 @@ public class GUI_Base extends JFrame {
                 panel.setName("Field_" + l + "_" + f);
                 contentPane.add(panel);
                 FieldController.addField(panel);
+
                 panel.addMouseListener(new MouseListener() {
 
                     @Override
